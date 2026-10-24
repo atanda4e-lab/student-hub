@@ -546,6 +546,7 @@ th{
     }
 }
 \n/* ================= SAFE UPGRADE STYLES ================= */\n.notice-card{border-left:4px solid #087f45}\n.quick-actions{display:flex;gap:10px;flex-wrap:wrap}\n.search-bar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin-bottom:15px}\n.search-bar input,.search-bar select{width:100%;padding:11px;border:1px solid #ccd5df;border-radius:8px}\n.matric{font-weight:bold;color:#063b24}\n.print-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}\n.calendar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}\n.calendar-item{background:white;border:1px solid #e5e9ee;border-radius:14px;padding:18px}\n.calendar-item strong{color:#087f45}\n.notification{background:white;border:1px solid #e5e9ee;border-radius:12px;padding:16px;margin-bottom:12px}\n.notification.unread{border-left:4px solid #087f45}\n@media(max-width:900px){.search-bar,.calendar-grid{grid-template-columns:1fr 1fr}}\n@media(max-width:700px){.search-bar,.calendar-grid{grid-template-columns:1fr}}\n@media print{body *{visibility:hidden!important}.print-area,.print-area *{visibility:visible!important}.print-area{position:absolute;left:0;top:0;width:100%;background:white!important;box-shadow:none!important;border:0!important}.no-print{display:none!important}}\n
+<<<<<<< HEAD
 
 /* ================= ADMIN DASHBOARD UPGRADE ================= */
 #adminDashboard .dashboard-heading{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;flex-wrap:wrap;margin-bottom:22px}
@@ -578,6 +579,8 @@ th{
 @media(max-width:850px){#adminDashboard .cards{grid-template-columns:repeat(2,minmax(0,1fr))}#adminDashboard .dashboard-lower{grid-template-columns:1fr}}
 @media(max-width:520px){#adminDashboard .cards{grid-template-columns:1fr}#adminDashboard .quick-actions{grid-template-columns:1fr}#adminDashboard .dashboard-panel{padding:16px}}
 
+=======
+>>>>>>> 8937324cd5cd2916dda3661210db059e7b5f11c8
 </style>
 
 </head>
@@ -1125,6 +1128,7 @@ th{
         <!-- ADMIN DASHBOARD -->
 
         <section id="adminDashboard" class="section active">
+<<<<<<< HEAD
             <div class="dashboard-heading">
                 <div>
                     <h1 class="page-title">Administrator Dashboard</h1>
@@ -1166,6 +1170,35 @@ th{
                     </div>
                 </div>
             </div>
+=======
+
+            <h1 class="page-title">Administrator Dashboard</h1>
+
+            <div class="cards">
+
+                <div class="stat-card">
+                    <small>Total Students</small>
+                    <h2 id="adminTotalStudents">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <small>Pending Students</small>
+                    <h2 id="adminPendingStudents">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <small>Total Courses</small>
+                    <h2 id="adminTotalCourses">0</h2>
+                </div>
+
+                <div class="stat-card">
+                    <small>Total Results</small>
+                    <h2 id="adminTotalResults">0</h2>
+                </div>
+
+            </div>
+
+>>>>>>> 8937324cd5cd2916dda3661210db059e7b5f11c8
         </section>
 
 
@@ -2880,6 +2913,7 @@ async function loadAdmin(){
 /* ================= ADMIN DASHBOARD ================= */
 
 async function updateAdminDashboard(){
+<<<<<<< HEAD
     const [studentsSnap, coursesSnap, resultsSnap] = await Promise.all([
         getDocs(collection(db,"students")),
         getDocs(collection(db,"courses")),
@@ -2920,6 +2954,48 @@ async function updateAdminDashboard(){
     }
     const dateBox = $("adminDashboardDate");
     if (dateBox) dateBox.textContent = new Date().toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short", year: "numeric" });
+=======
+
+    const students=
+        await getDocs(
+            collection(db,"students")
+        );
+
+    const courses=
+        await getDocs(
+            collection(db,"courses")
+        );
+
+    const results=
+        await getDocs(
+            collection(db,"results")
+        );
+
+
+    let pending=0;
+
+    students.docs.forEach(d=>{
+
+        if(d.data().status==="pending"){
+            pending++;
+        }
+
+    });
+
+
+    $("adminTotalStudents").textContent=
+        students.size;
+
+    $("adminPendingStudents").textContent=
+        pending;
+
+    $("adminTotalCourses").textContent=
+        courses.size;
+
+    $("adminTotalResults").textContent=
+        results.size;
+
+>>>>>>> 8937324cd5cd2916dda3661210db059e7b5f11c8
 }
 
 
