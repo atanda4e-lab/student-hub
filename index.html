@@ -546,6 +546,106 @@ th{
     }
 }
 \n/* ================= SAFE UPGRADE STYLES ================= */\n.notice-card{border-left:4px solid #087f45}\n.quick-actions{display:flex;gap:10px;flex-wrap:wrap}\n.search-bar{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:10px;margin-bottom:15px}\n.search-bar input,.search-bar select{width:100%;padding:11px;border:1px solid #ccd5df;border-radius:8px}\n.matric{font-weight:bold;color:#063b24}\n.print-actions{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}\n.calendar-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}\n.calendar-item{background:white;border:1px solid #e5e9ee;border-radius:14px;padding:18px}\n.calendar-item strong{color:#087f45}\n.notification{background:white;border:1px solid #e5e9ee;border-radius:12px;padding:16px;margin-bottom:12px}\n.notification.unread{border-left:4px solid #087f45}\n@media(max-width:900px){.search-bar,.calendar-grid{grid-template-columns:1fr 1fr}}\n@media(max-width:700px){.search-bar,.calendar-grid{grid-template-columns:1fr}}\n@media print{body *{visibility:hidden!important}.print-area,.print-area *{visibility:visible!important}.print-area{position:absolute;left:0;top:0;width:100%;background:white!important;box-shadow:none!important;border:0!important}.no-print{display:none!important}}\n
+
+/* ================= 2026/2027 POLISH ================= */
+.session-banner{
+    margin:0 0 22px;
+    padding:16px 20px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#063b24,#087f45);
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    box-shadow:0 10px 28px rgba(6,59,36,.14);
+}
+.session-banner strong{font-size:18px}
+.session-banner small{display:block;opacity:.88;margin-top:4px}
+.session-pill{
+    background:rgba(255,255,255,.16);
+    border:1px solid rgba(255,255,255,.25);
+    padding:9px 14px;
+    border-radius:999px;
+    font-weight:700;
+    white-space:nowrap;
+}
+.fee-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+    margin-bottom:20px;
+}
+.fee-card{
+    background:#fff;
+    border:1px solid #e4e9ef;
+    border-radius:16px;
+    padding:22px;
+    box-shadow:0 8px 24px rgba(23,32,51,.06);
+    position:relative;
+    overflow:hidden;
+}
+.fee-card:before{
+    content:"";
+    position:absolute;
+    left:0;top:0;bottom:0;width:5px;
+    background:#087f45;
+}
+.fee-card h3{margin:8px 0 6px}
+.fee-card .amount{font-size:25px;font-weight:800;margin:10px 0}
+.fee-card small{color:#667085}
+.fee-status{
+    display:inline-block;
+    margin-top:10px;
+    padding:6px 10px;
+    border-radius:999px;
+    background:#fff3cd;
+    color:#856404;
+    font-size:12px;
+    font-weight:700;
+}
+.fee-summary{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:16px;
+    margin:18px 0;
+}
+.summary-box{
+    background:#f8fafc;
+    border:1px solid #e6ebf0;
+    border-radius:14px;
+    padding:18px;
+}
+.summary-box strong{display:block;font-size:22px;margin-top:5px}
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:14px;
+}
+.feature-card{
+    border:1px solid #e5eaf0;
+    border-radius:14px;
+    padding:18px;
+    background:#fff;
+    transition:transform .2s,box-shadow .2s;
+}
+.feature-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(23,32,51,.08)}
+.feature-card .feature-icon{font-size:27px}
+.feature-card h4{margin:9px 0 5px}
+.feature-card p{margin:0;color:#667085;font-size:13px;line-height:1.5}
+.mini-note{
+    padding:12px 15px;
+    background:#f0fdf4;
+    border-left:4px solid #087f45;
+    border-radius:8px;
+    margin:12px 0;
+    color:#31513e;
+}
+@media(max-width:650px){
+    .session-banner{align-items:flex-start;flex-direction:column}
+    .session-pill{width:max-content}
+}
+
 </style>
 
 </head>
@@ -600,7 +700,7 @@ th{
 
         <div class="form-group">
             <label><Email/username/reg number></label>
-            <input id="studentLoginEmail" type="email/username" required>
+            <input id="studentLoginEmail" type="text" required>
         </div>
 
         <div class="form-group">
@@ -755,7 +855,7 @@ th{
         </button>
 
         <button class="nav-btn" onclick="studentSection('studentAttendance',this)">
-            📝 <Attendance>Evaluation
+            📝 Attendance
         </button>
 
         <button class="nav-btn" onclick="studentSection('studentAnnouncements',this)">
@@ -769,6 +869,7 @@ th{
         <button class="nav-btn" onclick="studentSection('studentTranscript',this)">🧾 Transcript</button>
         <button class="nav-btn" onclick="studentSection('studentNotifications',this)">🔔 Notifications</button>
         <button class="nav-btn" onclick="studentSection('studentCalendar',this)">📅 Academic Calendar</button>
+        <button class="nav-btn" onclick="studentSection('studentFees',this)">💳 Fees & Payments</button>
 
     </aside>
 
@@ -780,6 +881,13 @@ th{
         <section id="studentDashboard" class="section active">
 
             <h1 class="page-title">Student Dashboard</h1>
+            <div class="session-banner">
+                <div>
+                    <strong>2026/2027 Academic Session</strong>
+                    <small>Current Semester: First Semester • KWASU Student Hub</small>
+                </div>
+                <div class="session-pill">ACTIVE SESSION</div>
+            </div>
 
             <div class="cards">
 
@@ -810,8 +918,38 @@ th{
                 <div class="stat-card"><small>Registered Units</small><h2 id="dashUnits">0</h2></div>
                 <div class="stat-card"><small>Academic Standing</small><h2 id="dashStanding" style="font-size:18px">-</h2></div>
                 <div class="stat-card"><small>Notifications</small><h2 id="dashNotifications">0</h2></div>
+                <div class="stat-card"><small>Fee Balance</small><h2 id="dashFeeBalance" style="font-size:18px">₦0</h2></div>
             </div>
-            <div class="card notice-card"><h3>Quick Actions</h3><div class="quick-actions"><button class="primary" onclick="studentSection('courseRegistration',this)">Register Courses</button><button class="secondary" onclick="studentSection('registrationSlip',this)">Print Registration Slip</button><button class="secondary" onclick="studentSection('studentTranscript',this)">Print Result</button></div></div>
+            <div class="card notice-card">
+                <h3>Quick Actions</h3>
+                <div class="quick-actions">
+                    <button class="primary" onclick="studentSection('courseRegistration',this)">Register Courses</button>
+                    <button class="secondary" onclick="studentSection('studentFees',this)">View Fees</button>
+                    <button class="secondary" onclick="studentSection('registrationSlip',this)">Registration Slip</button>
+                    <button class="secondary" onclick="studentSection('studentTranscript',this)">View Transcript</button>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Student Services</h3>
+                <div class="feature-grid">
+                    <div class="feature-card" onclick="studentSection('courseRegistration',this)">
+                        <div class="feature-icon">📚</div><h4>Course Registration</h4>
+                        <p>Register and review your courses for the current semester.</p>
+                    </div>
+                    <div class="feature-card" onclick="studentSection('studentResults',this)">
+                        <div class="feature-icon">📊</div><h4>Academic Results</h4>
+                        <p>Check grades, GPA and CGPA from your academic records.</p>
+                    </div>
+                    <div class="feature-card" onclick="studentSection('studentFees',this)">
+                        <div class="feature-icon">💳</div><h4>Fees</h4>
+                        <p>View the current session fee breakdown and payment status.</p>
+                    </div>
+                    <div class="feature-card" onclick="studentSection('studentCalendar',this)">
+                        <div class="feature-icon">📅</div><h4>Academic Calendar</h4>
+                        <p>Keep track of registration, examinations and important dates.</p>
+                    </div>
+                </div>
+            </div>
             <div class="card">
                 <h3>Welcome, <span id="welcomeName"></span></h3>
                 <p>
@@ -853,7 +991,7 @@ th{
 
                     <div class="form-group">
                         <label>Academic Session</label>
-                        <input id="registrationSession" value="2025/2026">
+                        <input id="registrationSession" value="2026/2027">
                     </div>
 
                     <div class="form-group">
@@ -1033,6 +1171,70 @@ th{
         <section id="studentTranscript" class="section"><h1 class="page-title">Result Statement / Transcript</h1><div class="print-actions no-print"><button class="primary" onclick="printStudentTranscript()">Print / Save PDF</button><button class="secondary" onclick="loadStudentTranscript()">Refresh</button></div><div id="studentTranscriptArea" class="card print-area"></div></section>
         <section id="studentNotifications" class="section"><h1 class="page-title">Notifications</h1><div id="studentNotificationsList"></div></section>
         <section id="studentCalendar" class="section"><h1 class="page-title">Academic Calendar</h1><div id="studentCalendarList" class="calendar-grid"></div></section>
+
+        <section id="studentFees" class="section">
+            <h1 class="page-title">Fees & Payments</h1>
+            <div class="session-banner">
+                <div>
+                    <strong>2026/2027 • First Semester</strong>
+                    <small>Fee schedule displayed for planning. Confirm official charges before payment.</small>
+                </div>
+                <div class="session-pill">2026/2027</div>
+            </div>
+
+            <div class="fee-summary">
+                <div class="summary-box"><small>Total Listed Fees</small><strong>₦147,000</strong></div>
+                <div class="summary-box"><small>Compulsory Listed Fees</small><strong>₦112,000</strong></div>
+                <div class="summary-box"><small>Optional Hostel</small><strong>₦35,000</strong></div>
+            </div>
+
+            <div class="fee-grid">
+                <div class="fee-card">
+                    <small>School / Academic Fees</small>
+                    <h3>2026/2027 Session</h3>
+                    <div class="amount">₦109,500</div>
+                    <small>Placeholder amount — verify with the institution.</small>
+                    <br><span class="fee-status">Payment status: Not connected</span>
+                </div>
+                <div class="fee-card">
+                    <small>Handbook & Miscellaneous</small>
+                    <h3>Student Charges</h3>
+                    <div class="amount">₦2,500</div>
+                    <small>Placeholder amount — verify with the institution.</small>
+                    <br><span class="fee-status">Payment status: Not connected</span>
+                </div>
+                <div class="fee-card">
+                    <small>Hostel Accommodation</small>
+                    <h3>Optional</h3>
+                    <div class="amount">₦35,000</div>
+                    <small>Shown separately because accommodation may not apply to every student.</small>
+                    <br><span class="fee-status">Optional</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Payment Information</h3>
+                <div class="mini-note">
+                    This portal does not process real payments yet. Do not enter card, bank or transfer details here.
+                    Use only an official school payment channel when fees are confirmed.
+                </div>
+                <div class="quick-actions">
+                    <button class="primary" onclick="showFeeNotice()">Check Payment Status</button>
+                    <button class="secondary" onclick="window.print()">Print Fee Summary</button>
+                </div>
+                <div id="feeNotice" style="margin-top:12px"></div>
+            </div>
+
+            <div class="card">
+                <h3>Fee Checklist</h3>
+                <ul style="line-height:2">
+                    <li>Confirm your level and programme before payment.</li>
+                    <li>Confirm the official 2026/2027 charges.</li>
+                    <li>Keep your payment receipt after payment.</li>
+                    <li>Check your portal after the institution confirms payment.</li>
+                </ul>
+            </div>
+        </section>
     </main>
 </div>
 </div>
@@ -1095,6 +1297,13 @@ th{
         <section id="adminDashboard" class="section active">
 
             <h1 class="page-title">Administrator Dashboard</h1>
+            <div class="session-banner">
+                <div>
+                    <strong>2026/2027 Academic Session</strong>
+                    <small>Current Semester: First Semester • Administration Console</small>
+                </div>
+                <div class="session-pill">ACTIVE SESSION</div>
+            </div>
 
             <div class="cards">
 
@@ -1124,6 +1333,16 @@ th{
 
 
         <!-- PENDING STUDENTS -->
+
+        <div class="card" style="margin-top:20px">
+                <h3>Current Academic Setup</h3>
+                <div class="fee-summary">
+                    <div class="summary-box"><small>Session</small><strong>2026/2027</strong></div>
+                    <div class="summary-box"><small>Semester</small><strong>First Semester</strong></div>
+                    <div class="summary-box"><small>Registration</small><strong>Open</strong></div>
+                </div>
+                <p class="mini-note">Use the existing Courses, Results, Attendance and Calendar tools to manage student records for the current session.</p>
+            </div>
 
         <section id="pendingStudents" class="section">
 
@@ -1260,8 +1479,8 @@ th{
                             class="score-input"
                             type="number"
                             min="0"
-                            max="30"
-                            placeholder="0 - 30">
+                            max="30/40"
+                            placeholder="0 - 30-40">
                     </div>
 
                     <div class="form-group">
@@ -1277,7 +1496,7 @@ th{
 
                     <div class="form-group">
                         <label>Session</label>
-                        <input id="resultSession" value="2025/2026">
+                        <input id="resultSession" value="2026/2027">
                     </div>
 
                 </div>
@@ -1317,6 +1536,8 @@ th{
                             <th>Exam</th>
                             <th>Total</th>
                             <th>Grade</th>
+                            <th>unit</th>
+                            <th>gp</th>
                         </tr>
                     </thead>
 
@@ -1428,8 +1649,7 @@ th{
 </div>
 <script type="module">
 
-import { initializeApp }
-from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
     getAuth,
@@ -1528,6 +1748,8 @@ const departments = [
 "English",
 "History",
 "Religious Studies",
+"zoology",
+"performing art",
 "Islamic Studies",
 "Christian Religious Studies",
 "Languages",
@@ -2665,6 +2887,23 @@ async function loadStudentResults(){
 }
 
 
+
+/* ================= SESSION / FEES ================= */
+const CURRENT_ACADEMIC_SESSION = "2026/2027";
+const CURRENT_SEMESTER = "First Semester";
+const LISTED_TOTAL_FEES = 147000;
+
+window.showFeeNotice = function(){
+    const box = $("feeNotice");
+    if(!box) return;
+    box.innerHTML = `<div class="mini-note"><strong>Payment status:</strong> This demo portal is not connected to a real payment gateway. Please verify official fees and payment instructions before making any payment.</div>`;
+};
+
+function updateFeeDashboard(){
+    const el = $("dashFeeBalance");
+    if(el) el.textContent = "₦147,000";
+}
+
 /* ================= DASHBOARD ================= */
 
 async function updateStudentDashboard(){
@@ -2674,7 +2913,7 @@ async function updateStudentDashboard(){
     const cgpa=calculateCGPA(results),second=results.filter(r=>r.semester==="Second Semester"),first=results.filter(r=>r.semester==="First Semester"),currentGPA=second.length?calculateGPA(second):first.length?calculateGPA(first):0,units=registrations.reduce((s,r)=>s+Number(r.unit||0),0);
     let standing="-"; if(results.length) standing=cgpa>=4.5?"First Class":cgpa>=3.5?"Second Class Upper":cgpa>=2.4?"Second Class Lower":cgpa>=1.5?"Third Class":"Academic Warning";
     $("dashCourses").textContent=registrations.length;$("dashResults").textContent=results.length;$("dashGPA").textContent=currentGPA.toFixed(2);$("dashCGPA").textContent=cgpa.toFixed(2);
-    if($("dashMatric"))$("dashMatric").textContent=currentStudent.matricNumber||"Not assigned";if($("dashUnits"))$("dashUnits").textContent=units;if($("dashStanding"))$("dashStanding").textContent=standing;if($("dashNotifications"))$("dashNotifications").textContent=await countStudentNotifications();
+    if($("dashMatric"))$("dashMatric").textContent=currentStudent.matricNumber||"Not assigned";if($("dashUnits"))$("dashUnits").textContent=units;if($("dashStanding"))$("dashStanding").textContent=standing;if($("dashNotifications"))$("dashNotifications").textContent=await countStudentNotifications(); updateFeeDashboard();
 }
 
 
@@ -3878,6 +4117,11 @@ window.logoutUser=async function(){
 populateDepartmentSelect();
 
 </script>
+
+
+<div style="text-align:center;padding:25px;color:#667085;font-size:12px">
+    Atanda Student Hub • 2026/2027 Academic Session • First Semester
+</div>
 
 </body>
 </html>
